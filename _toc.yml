@@ -1,0 +1,17 @@
+# In _toc.yml
+- file: intro_python
+  numbered: true
+
+
+- part: Réviser les bases
+  chapters:
+  - file: notebook/exo_general
+- part: Bilbiothèques scientifiques
+  chapters:
+  - file: notebook/exo_science
+- part: Plus loin avec numpy
+  chapters:
+  - file: notebook/exo_science_2
+- part: Compléments
+  chapters:
+  - file: notebook/complement
