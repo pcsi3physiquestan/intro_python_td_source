@@ -67,6 +67,8 @@ plt.show()
 ```
 +++
 
+
+
 ## Etude de données expérimentales
 ````{admonition} Etude de données expérimentales
 :class: tip
