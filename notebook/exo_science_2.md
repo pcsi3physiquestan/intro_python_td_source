@@ -14,7 +14,9 @@ kernelspec:
   name: python3
 ---
 
+
 # S'entraîner (Import et tirages aléatoires)
+La partie donnant les concepts pour faire ces exercices est [accessible ici](https://pcsi3physiquestan.github.io/intro_python/notebook/import_file.html).
 
 ```{important}
 Une partie des exercices suivants utilisent des données expérimentales stockées dans des fichiers. Chaque exercice vous donnera le lien permettant de télécharger le fichier. Vous avez normalement créé un répertoire pour votre travail sous Python. Dans ce répertoire (ou le sous-répertoire où vous comptez créer vos fichier `.py` pour les exercices, créez un répertoire `donnees_exp` dans lesquelles vous téléchargerez les fichiers fournis.
@@ -235,6 +237,7 @@ _Compléments utiles_:
 ```{code-cell}
 :tags: [remove-input, hide-output]
 donnees = np.loadtxt('Sf6/vitesse_son_2.dat', skiprows=10, delimiter=",")
+distances = donnees[:, 0]  # Récupération des distances.
 
 """Tracé des histogrammes"""
 f, ax = plt.subplots()

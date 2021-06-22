@@ -14,7 +14,9 @@ kernelspec:
   name: python3
 ---
 
-# S'entraîner
+# S'entraîner.
+La partie donnant les concepts pour faire ces exercices est [accessible ici](https://pcsi3physiquestan.github.io/intro_python/notebook/np_vecteurs.html).
+
 Voici quelques exercices pour vous entraîner à coder. Les conseils donnés pour les premiers exercices sont toujours valables. _Pensez à créer un fichier par exercice._
 
 +++

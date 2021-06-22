@@ -15,6 +15,7 @@ kernelspec:
 ---
 
 # S'entraîner.
+La partie donnant les concepts pour faire ces exercices est [accessible ici](https://pcsi3physiquestan.github.io/intro_python/notebook/bases_intro.html).
 
 ## Analyser un code
 
