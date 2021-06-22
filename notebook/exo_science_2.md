@@ -14,7 +14,7 @@ kernelspec:
   name: python3
 ---
 
-# S'entraîner
+# S'entraîner (Import et tirages aléatoires)
 
 ```{important}
 Une partie des exercices suivants utilisent des données expérimentales stockées dans des fichiers. Chaque exercice vous donnera le lien permettant de télécharger le fichier. Vous avez normalement créé un répertoire pour votre travail sous Python. Dans ce répertoire (ou le sous-répertoire où vous comptez créer vos fichier `.py` pour les exercices, créez un répertoire `donnees_exp` dans lesquelles vous téléchargerez les fichiers fournis.
@@ -214,8 +214,8 @@ Le fichier de données est à télécharger à [ce lien](https://github.com/pcsi
 Si votre navigateur ouvre le fichier au lieu de le télécharger, faites un clic droit sur le lien et choisir `Enregistrer la cible du lien`)
 ```
 
-1. Après avoir téléchargé le fichier de données et l'avoir déplacé dans le répertoire `donnees_exp`, l'ouvrir dans pyzo et observer son contenu. Quelles données expérimentales contient-il ?
-2. Vous avez dû remarquer que la forme du tableau de données n'est pas comme les précédents. Ecrire une série d'instructions qui charge les données expérimentales dans un tableau. On traitera dans une boucle les données pour chaque distance.
+1. Après avoir téléchargé le fichier de données et l'avoir déplacé dans le répertoire `donnees_exp`, l'ouvrir dans pyzo et observer son contenu. Quelles données expérimentales contient-il ? (Les temps de vol sont données en microsecondes).
+2. Vous avez dû remarquer que la forme du tableau de données n'est pas comme les précédents. Importer le tableau complet dans une variable `donnees`. On traitera dans une boucle les données pour chaque distance.
 3. Créer un graphique et y tracer, pour chaque distance l'histogramme des valeurs mesurées. On prendra soin de bien légender chaque histogramme par sa distance. __Vous DEVEZ utiliser une boucle qui puisse s'adapter à un autre fichier de données qui aurait la même forme mais pas forcément les mêmes distances (ni le même nombre de distances étudiées).__ _Quelques informations utiles sont données à la fin de l'exercice._
 4. Observer les histogrammes, vous devriez observer que certaines mesures sont _clairement aberrantes_. Nous allons proposées une méthode de sélection des valeurs acceptables.
 
@@ -225,9 +225,81 @@ La méthode de sélection (non expliquée ici) consiste à calculer la moyenne $
 
 5. Ecrire une fonction qui prend comme argument un vecteur numpy `u` et qui renvoie un vecteur numpy `u_sel` ne contenant que les valeurs acceptables.
 6. Pour chaque distance $D$ (toujours avec la contrainte de devoir s'adapter à un autre fichier de mesure), sélectionner les valeurs à garder puis calculer le temps de vol moyen puis la célérité du son associée $c(D)$. Stocker cette célérité dans un vecteur numpy `cs`.
-7. Estimer la moyenne de `cs` comme une estimation de la célérité des ultrasons. Sachant qu'elle est à peu près identique à la célérité du son dans l'air, vérifier si l'ordre de grandeur obtenu est correct. Sans estimation des incertitudes de mesures, on se limitera à une vérification de l'ordre de grandeur.
+7. Représenter les valeurs des célérités estimées en fonction de $D$ et vérifier qu'on observe bien à peu près la même valeur pour distance (on ne peut faire mieux qu'une estimation visuelle sans la données des incertitudes).
+8. Estimer la moyenne de `cs` comme une estimation de la célérité des ultrasons. Sachant qu'elle est à peu près identique à la célérité du son dans l'air, vérifier si l'ordre de grandeur obtenu est correct. Sans estimation des incertitudes de mesures, on se limitera à une vérification de l'ordre de grandeur.
 
 _Compléments utiles_:
 * L'option `label` ne prend comme argument qu'une chaine de caractère. Vous pouvez transformer un flottant ou un entier en chaine de caractère `x` par `str(x)`. Vous pouvez aussi concaténer cette chain avec d'autres : `str(x) + " cm"`.
 ````
 
+```{code-cell}
+:tags: [remove-input, hide-output]
+donnees = np.loadtxt('Sf6/vitesse_son_2.dat', skiprows=10, delimiter=",")
+
+"""Tracé des histogrammes"""
+f, ax = plt.subplots()
+f.suptitle("Analyse des données expérimentales")
+ax.set_xlabel("Temps de vol (microssec)")
+
+for data in donnees:
+    d = data[0]  # Distance d'étude
+    tps = data[1:]  # Les temps de vol
+    ax.hist(tps, bins='rice', label="D = " + str(d) + " cm")  # Tracé de l'histogramme. Observer l'ajout de la légende.
+
+ax.legend()
+
+plt.show()
+```
+
+```{code-cell}
+:tags: [remove-input, hide-output]
+
+def selection(u):
+    """Fonction qui sélectionne les valeurs acceptables du vecteur u"""
+    um = np.mean(u)  # Calcul de la moyenne
+    uu = np.std(u, ddof=1)  # Calcul de l'écart-type
+
+    """Important : On ne connait pas quelle va être la taille de u_sel.
+    L'usage d'un vecteur numpy est donc déconseillé. On va créer une liste classique
+    qu'on transformera à la fin en vecteur numpy.
+    """
+    u_sel = []  # Liste où l'on va stocker les valeurs sélectionnées.
+    for val in u:  # On parcourt les valeurs de la liste.
+        if np.abs(val - um) <= 2 * uu:  # Test d'écart à la valeur moyenne
+            u_sel.append(val)  # On ajoute la valeur
+    return np.array(u_sel)  # On transforme u_sel en vecteur numpy
+
+
+"""Détermination des valeurs de c"""
+cs = []  # Liste pour les célérités
+for data in donnees:
+    d = data[0]  # Distance
+    t_sel = selection(data[1:])  # Sélection des valeurs acceptables
+    t_moy = np.mean(t_sel)
+    c = 2 * d / t_moy
+    cs.append(c)
+
+cs = np.array(cs) / 100 * 1000000  # On passe à des m/s
+
+f, ax = plt.subplots()
+f.suptitle("Valeurs de célérité estimée")
+ax.set_xlabel("d(cm)")
+ax.set_ylabel("c(m/s)")
+
+ax.plot(distances, cs, label="Célérité", marker='+', linestyle='')  # On ne relie pas les points.
+
+print("On observe des valeurs entre 345m/s et 350m/s soit des valeurs peu dispersées.")
+plt.show()  # Pensez à commenter le précédent plt.show()
+```
+
+```{code-cell}
+:tags: [remove-input, hide-output]
+celerite = np.mean(cs)
+
+print("---------")
+print("Valeur estimée de la célérité :")
+print(str(celerite) + "m/s")
+print("---------")
+
+
+```

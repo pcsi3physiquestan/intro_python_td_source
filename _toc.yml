@@ -11,6 +11,7 @@
   - file: notebook/exo_science
 - part: Plus loin avec numpy
   chapters:
+  - file: notebook/exo_polyfit
   - file: notebook/exo_science_2
 - part: Compléments
   chapters:
