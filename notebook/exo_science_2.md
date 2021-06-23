@@ -210,7 +210,7 @@ Cet exercice est un peu plus complet. Veillez à bien comprendre ce qui a été 
 
 ````{admonition} Célérité des ultrasons
 :class: tip
-Le but est d'étudier la propagation des ultrasons dans l'air pour estimer leur célérité. Grâce à un microcontrolleur (Arduino), on a réalisé un grand nombre de mesures (environ 1000) du temps de vol $\Delta t$ des ultrasons pour plusieurs distances différentes $2D$ (on a réalisé un aller-retour par réflexion sur un obstacle) afin d'estimer pour chaque distance la célérité moyenne $c = {2D \over \Delta t(D)}$. On fera alors la moyenne des célérités sur toutes les distances pour estimer la célérité des ultrasons dans l'air.
+Le but est d'étudier la propagation des ultrasons dans l'air pour estimer leur célérité. Grâce à un microcontrolleur (Arduino), on a réalisé un grand nombre de mesures (environ 1000) du temps de vol $\Delta t$ des ultrasons pour plusieurs distances différentes $2d$ (on a réalisé un aller-retour par réflexion sur un obstacle) afin d'estimer pour chaque distance la célérité moyenne $c = {2d \over \Delta t(d)}$. On fera alors la moyenne des célérités sur toutes les distances pour estimer la célérité des ultrasons dans l'air.
 
 Le fichier de données est à télécharger à [ce lien](https://github.com/pcsi3physiquestan/donnees_exp/blob/main/vitesse_son_2.dat?raw=true).
 
@@ -223,12 +223,12 @@ Si votre navigateur ouvre le fichier au lieu de le télécharger, faites un clic
 3. Créer un graphique et y tracer, pour chaque distance l'histogramme des valeurs mesurées. On prendra soin de bien légender chaque histogramme par sa distance. __Vous DEVEZ utiliser une boucle qui puisse s'adapter à un autre fichier de données qui aurait la même forme mais pas forcément les mêmes distances (ni le même nombre de distances étudiées).__ _Quelques informations utiles sont données à la fin de l'exercice._
 4. Observer les histogrammes, vous devriez observer que certaines mesures sont _clairement aberrantes_. Nous allons proposées une méthode de sélection des valeurs acceptables.
 
-La méthode de sélection (non expliquée ici) consiste à calculer la moyenne $\Delta t_m (D)$ et l'écart-type $\sigma (D)$ des valeurs de temps de vol pour une distance $D$ puis parcourir l'ensemble des valeurs mesurées $\Delta t_i (D)$ pour la distance $D$.
-* Si l'écart à la moyenne $\left\vert (\Delta t_i (D) - \Delta t_m (D) \right\vert$ est inférieure à 2 écart-type ($2 \sigma (D)$), alors on garde la valeur.
-* Si l'écart à la moyenne $\left\vert (\Delta t_i (D) - \Delta t_m (D) \right\vert$ est supérieure à 2 écart-type ($2 \sigma (D)$), alors on enlève la valeur.
+La méthode de sélection (non expliquée ici) consiste à calculer la moyenne $\Delta t_m (d)$ et l'écart-type $\sigma (d)$ des valeurs de temps de vol pour une distance $d$ puis parcourir l'ensemble des valeurs mesurées $\Delta t_i (d)$ pour la distance $d$.
+* Si l'écart à la moyenne $\left\vert (\Delta t_i (d) - \Delta t_m (d) \right\vert$ est inférieure à 2 écart-type ($2 \sigma (d)$), alors on garde la valeur.
+* Si l'écart à la moyenne $\left\vert (\Delta t_i (d) - \Delta t_m (d) \right\vert$ est supérieure à 2 écart-type ($2 \sigma (d)$), alors on enlève la valeur.
 
 5. Ecrire une fonction qui prend comme argument un vecteur numpy `u` et qui renvoie un vecteur numpy `u_sel` ne contenant que les valeurs acceptables.
-6. Pour chaque distance $D$ (toujours avec la contrainte de devoir s'adapter à un autre fichier de mesure), sélectionner les valeurs à garder puis calculer le temps de vol moyen puis la célérité du son associée $c(D)$. Stocker cette célérité dans un vecteur numpy `cs`.
+6. Pour chaque distance $D$ (toujours avec la contrainte de devoir s'adapter à un autre fichier de mesure), sélectionner les valeurs à garder puis calculer le temps de vol moyen puis la célérité du son associée $c(d)$. Stocker cette célérité dans un vecteur numpy `cs`.
 7. Représenter les valeurs des célérités estimées en fonction de $D$ et vérifier qu'on observe bien à peu près la même valeur pour distance (on ne peut faire mieux qu'une estimation visuelle sans la données des incertitudes).
 8. Estimer la moyenne de `cs` comme une estimation de la célérité des ultrasons. Sachant qu'elle est à peu près identique à la célérité du son dans l'air, vérifier si l'ordre de grandeur obtenu est correct. Sans estimation des incertitudes de mesures, on se limitera à une vérification de l'ordre de grandeur.
 
@@ -249,7 +249,7 @@ ax.set_xlabel("Temps de vol (microssec)")
 for data in donnees:
     d = data[0]  # Distance d'étude
     tps = data[1:]  # Les temps de vol
-    ax.hist(tps, bins='rice', label="D = " + str(d) + " cm")  # Tracé de l'histogramme. Observer l'ajout de la légende.
+    ax.hist(tps, bins='rice', label="d = " + str(d) + " cm")  # Tracé de l'histogramme. Observer l'ajout de la légende.
 
 ax.legend()
 
