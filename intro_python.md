@@ -16,5 +16,5 @@ kernelspec:
 
 # Eléments de bases pour programmer en Python
 
-Cette présentation regroupe l'ensemble des éléments de langage de Python que vous avez pu utiliserau lycée et qui seront nécessaires pour travailler dans les disciplines scientifiques. Le temps et les attentes en prépas nécessite une maîtrise au préalable de ces éléments pour suivre ce qui sera fait en classe.
+Voici les exercices d'entraînement qui font suite [aux présentations sur les bases et les bibliothèques scientifiques](https://pcsi3physiquestan.github.io/intro_python).
 
