@@ -49,12 +49,12 @@ Un bilan sur les sources d'incertitude amène aux conclusions suivantes :
 1. Représenter $\tau$ en fonction de R avec les croix d'incertitudes. On utilisera la fonction `errorbar`.
 2. Vérifier que le modèle attendu $\tau = RC$ est visuellement possible.
 3. Estimer la capacitance $C$ par régression linéaire puis représenter la droite d'ajustement affine.
-4. Une méthode qualitative pour vérifier si le modèle est cohérent avec les incertitudes de mesure est de vérifier si la droite d'ajustement passe bien par les barre d'incertitude. Tester ici la cohérence du modèle.
+4. Une méthode qualitative pour vérifier si le modèle est cohérent avec les incertitudes de mesure est de vérifier si la droite d'ajustement passe bien par les barres d'incertitude. Tester ici la cohérence du modèle.
 5. La relation étant linéaire, on peut aussi estimer $C$ comme la moyenne des rapport $\frac{\tau}{R}$. Estimer la capacitance de cette manière et vérifier qu'on obtient le même ordre de grandeur.
 ```{tip}
 On rappelle la fonction pour tracer des points de mesures avec des barres d'erreurs :
 
-`errorbar(x, y, yerr=inc_y, options...)`
+`errorbar(x, y, xerr=inc_x, yerr=inc_y, options...)`
 
 ```
 ````
@@ -102,6 +102,7 @@ print("----------------")
 
 ax.plot(R, tau_adj, linestyle=':', color='blue', label="Ajustement")
 
+f  # Uniquement pour Jupyter
 plt.show()  # Commenter le précédent plt.show()
 
 print("La droite passe globalement par les croix d'incertitude à part les points 2 et 3 pour lesquels il faudrait approfondir l'analyse.")
@@ -149,7 +150,7 @@ On veut mesurer la concentration de l'additif alimentaire E131 (bleu patenté) d
 >
 > Le mode opératoire utilisé et l'analyse des sources d'incertitudes amène à une expression de l'incertitude sur $C_i$ :
 >
-> $$u(C_i) = \frac{C_0 u_i}{V_T} \sqrt{1 + {\frac{C_i}{C_0}}^2}$$
+> $$u(C_i) = \frac{C_0 u_i}{V_T} \sqrt{1 + {\left (\frac{C_i}{C_0}\right )}^2}$$
 > avec $u_i = 0.1 mL$ (l'incertitude sur la concentration a une influence négligeable).
 
 > __Loi de Beer-Lambert :__
@@ -184,8 +185,8 @@ donnees.style
 1. Créer deux vecteur numpy contenant les volumes $V_{1i}$ et les absorbances $A_i$ puis obtenir deux vecteurs numpy contenant les concentration $C_i$ et les incertitudes $u(C_i)$.
 2. Représenter graphiquement $C_i$ en fonction de $A_i$ et vérifier que le modèle linéaire proposé par la loi de Beer-Lambert n'est pas aberrant. _On utilisera la fonction `errorbar` pour représenter les barres d'incertitudes associées aux concentrations_.
 3. Réaliser une régression linéaire sans tenir compte des incertitudes sur les concentrations et tracer la droite d'ajustement affine sur le même graphique que précédemment. (_Supprimer le `plt.show()` précédent_).
-4. Une méthode qualitative pour vérifier si le modèle est cohérent avec les incertitudes de mesure est de vérifier si la droite d'ajustement passe bien par les barre d'incertitude. Tester ici la cohérence du modèle.
-5. On dilue un bonbon dans de l'eau diluée de sorte que le volume de liquide (avec le bonbon) soit $V_f = 50.00 mL$. On mesure alors l'absorbance de la solution ainsi réalisée, on obtient $A_{649nm, f} = 0.665 SI$. Utiliser Python comme calculatrice et les données du modèle ajuster pour déterminer la quantité maximale de bonbons bleus qu'on peut manger par jour sans dépasser la DJA (Dose journalière admissible) de l'additif E131 qui est de 2.5mg par kg de masse corporelle. On donne la masse molaire du bleu patenté $M = 582,66 g.mol^{-1}$.
+4. Une méthode qualitative pour vérifier si le modèle est cohérent avec les incertitudes de mesure est de vérifier si la droite d'ajustement passe bien par les barres d'incertitude. Tester ici la cohérence du modèle.
+5. On dilue un bonbon dans de l'eau diluée de sorte que le volume de liquide (avec le bonbon) soit $V_f = 50.00 mL$. On mesure alors l'absorbance de la solution ainsi réalisée, on obtient $A_{649nm, f} = 0.665 SI$. Utiliser Python comme calculatrice et les données du modèle ajusté pour déterminer la quantité maximale de bonbons bleus qu'on peut manger par jour sans dépasser la DJA (Dose journalière admissible) de l'additif E131 qui est de 2.5mg par kg de masse corporelle. On donne la masse molaire du bleu patenté $M = 582,66 g.mol^{-1}$.
 
 ```{note}
 Le nombre de bonbon trouvé ne tient pas compte de la quantité de sucre ingurgitée...
