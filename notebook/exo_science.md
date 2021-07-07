@@ -37,7 +37,7 @@ On suppose qu'il s'agit du mouvement d'une "Masse sur un axe". Le tracé de la c
 Vous devriez obtenir le graphique suivant (cliquez sur la croix).
 
 ```{code-cell}
-:tags: [remove-input, hide-output]
+:tags: [hide-input, hide-output]
 import matplotlib.pyplot  as plt
 import numpy as np
 
@@ -86,7 +86,7 @@ N'oubliez le caractère vectoriel des opérations sur les vecteurs numpy, vous d
 ````
 
 ```{code-cell}
-:tags: [remove-input, hide-output]
+:tags: [hide-input, hide-output]
 
 k = 11
 m = 0.3

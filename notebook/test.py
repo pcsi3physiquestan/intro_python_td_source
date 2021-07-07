@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import numpy.random as rd
+import pandas as pd
 
 # L1 = np.arange(0, 4)
 # L2 = L1 * L1
@@ -309,24 +310,40 @@ import numpy.random as rd
 # print("Valeur estimée de C :", C)
 # print("Tous les chiffres ne sont pas significatifs...")
 
-taus = np.loadtxt('Sf6/circuit_rc_auto.dat', skiprows=7, delimiter=",")  # Importation des données
+# taus = np.loadtxt('Sf6/circuit_rc_auto.dat', skiprows=7, delimiter=",")  # Importation des données
 
 
-print("Nombre de mesures :", len(taus))
+# print("Nombre de mesures :", len(taus))
 
-f, ax = plt.subplots()
-f.suptitle("Etude de la décharge d'un RC")
-ax.set_xlabel('tau(microsecondes)')
-ax.set_ylabel('Fréquence')
+# f, ax = plt.subplots()
+# f.suptitle("Etude de la décharge d'un RC")
+# ax.set_xlabel('tau(microsecondes)')
+# ax.set_ylabel('Fréquence')
 
-ax.hist(taus, bins='rice')
+# ax.hist(taus, bins='rice')
 
-plt.show()
+# plt.show()
 
-"""Calcul de la moyenne et écart-type"""
-tau_m = np.mean(taus)
-tau_u = np.std(taus, ddof=1)
+# """Calcul de la moyenne et écart-type"""
+# tau_m = np.mean(taus)
+# tau_u = np.std(taus, ddof=1)
 
-print("Tau moyen : ", tau_m)
-print("Ecart-type : ", tau_u)
-print("Tous les chiffres ne sont pas forcément significatifs...")
+# print("Tau moyen : ", tau_m)
+# print("Ecart-type : ", tau_u)
+# print("Tous les chiffres ne sont pas forcément significatifs...")
+
+Vi = np.array([1, 2.50, 5.00, 7.50, 10.00])
+Ai = np.array([0.128, 0.428, 0.833, 1.267, 1.765])
+
+Vt = 10  # V_T en mL
+C0 = 2.04  # On n'introduit pas la puissance 10^-5
+u1 = 0.05  # Incertitude sur les volumes en mL
+
+"""Calcul des Ci et uCi. On utilise la vectorialisation des vecteurs numpy"""
+Ci = C0 * Vi / Vt  # Calcul des Ci, on n'introduit pas la puissance 10^-5
+uCi = C0 * u1 / Vt * np.sqrt(1 + (Ci / C0) ** 2)  # Calcul des uCi
+
+
+datas = np.array([Ai, Ci, uCi * 3])
+
+np.savetxt('../../donnees_exp/lambert.dat', datas.transpose(), fmt='%.3f', delimiter=',', header='A(SI), C(10^-5 mol/L), u(C)(10^-5 mol/L)')
