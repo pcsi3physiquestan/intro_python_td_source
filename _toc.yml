@@ -1,18 +1,20 @@
-# In _toc.yml
-- file: intro_python
+format: jb-book
+root: intro_python
+parts:
+- caption: "Réviser les bases"
   numbered: true
-
-
-- part: Réviser les bases
   chapters:
   - file: notebook/exo_general
-- part: Bilbiothèques scientifiques
+- caption: "Bilbiothèques scientifiques"
+  numbered: true
   chapters:
   - file: notebook/exo_science
-- part: Plus loin avec numpy
+- caption: Plus loin avec numpy
+  numbered: true
   chapters:
   - file: notebook/exo_polyfit
   - file: notebook/exo_science_2
-- part: Compléments
+- caption: "Compléments"
+  numbered: true
   chapters:
   - file: notebook/complement
