@@ -56,7 +56,7 @@ L1 = [1, 2, 3]
 L2 = [4, 5, 6]
 L = []
 for i in range(len(L1)):
-  L = L.append(L1[i] + L2[i])
+  L.append(L1[i] + L2[i])
 
 print(len(L1))
 print(L1 + L2)
