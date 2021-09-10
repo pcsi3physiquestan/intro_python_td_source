@@ -100,12 +100,21 @@ print("tau = " + str(p[0]) + "* R + " + str(p[1]))
 print("Il faudrait arrondir en réfléchissant aux chiffres significatifs")
 print("----------------")
 
-ax.plot(R, tau_adj, linestyle=':', color='blue', label="Ajustement")
 
-plt.show()  # Commenter le précédent plt.show()
+"""Création du graphique et analyse des points de mesure"""
+f, ax= plt.subplots()
+f.suptitle("Détermination de C")
+ax.set_xlabel("R(Ohm)")
+ax.set_ylabel("tau(micro s")
+
+ax.plot(R, tau_adj, linestyle=':', color='blue', label="Ajustement")
+ax.errorbar(R, tau, xerr=uR, yerr=utau, marker='+', linestyle='', color='red', label="Points de mesure")
+
+ax.legend()
+plt.show()
 
 print("La droite passe globalement par les croix d'incertitude à part les points 2 et 3 pour lesquels il faudrait approfondir l'analyse.")
-f  # Uniquement pour Jupyter
+
 ```
 
 ```{code-cell}
@@ -218,7 +227,7 @@ f.suptitle("Dosage par absorbance")
 ax.set_xlabel("Absorbance à 640nm (SI)")
 ax.set_ylabel("Concentration (10^-5 mol/L)")
 
-ax.errorbar(Ai, Ci, yerr=uCi, label="Points de mesure", marker='+', linestyle='', color='red')
+ax.errorbar(Ai, Ci, yerr=uCi, label="Points de mesure", linestyle='', color='red')
 
 ax.legend()
 
@@ -235,7 +244,7 @@ p = np.polyfit(Ai, Ci, 1)  # Réalisation de l'ajustement affine
 
 print("-------------------")
 print("Le modèle ajusté a pour équation :")
-print(str(p[0]) + " * A " + str(p[1]))
+print(str(p[0]) + " * A + " + str(p[1]))
 print("Il faudra bien sûr réfléchir au nombre de chiffres significatifs à garder")
 print("-------------------")
 
