@@ -42,9 +42,9 @@ import matplotlib.pyplot  as plt
 import numpy as np
 
 def f(x):
-  return 2*x + np.sin(x)
+  return 2*x + 3 *np.sin(x)
 
-x = np.linspace(0, 2 * np.pi, 2000)
+x = np.linspace(0, 4 * np.pi, 2000)
 y = f(x)
 
 f, ax = plt.subplots()
