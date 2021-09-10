@@ -102,10 +102,10 @@ print("----------------")
 
 ax.plot(R, tau_adj, linestyle=':', color='blue', label="Ajustement")
 
-f  # Uniquement pour Jupyter
 plt.show()  # Commenter le précédent plt.show()
 
 print("La droite passe globalement par les croix d'incertitude à part les points 2 et 3 pour lesquels il faudrait approfondir l'analyse.")
+f  # Uniquement pour Jupyter
 ```
 
 ```{code-cell}
