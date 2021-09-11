@@ -96,17 +96,17 @@ Tester ensuite votre fonction en affichant son retour pour $n = 0, 1, 2, 5$ et $
 
 ```{code-cell}
 :tags: [hide-input, hide-output]
-def somme_carre(n):
+def somme_entier(n):
   s = 0
   for i in range(1, n+1):
     s += i
   return s
 
-print("n=0 : ", somme_carre(0))
-print("n=1 : ", somme_carre(1))
-print("n=2 : ", somme_carre(2))
-print("n=5 : ", somme_carre(5))
-print("n=100 : ", somme_carre(100))
+print("n=0 : ", somme_entier(0))
+print("n=1 : ", somme_entier(1))
+print("n=2 : ", somme_entier(2))
+print("n=5 : ", somme_entier(5))
+print("n=100 : ", somme_entier(100))
 ```
 
 +++

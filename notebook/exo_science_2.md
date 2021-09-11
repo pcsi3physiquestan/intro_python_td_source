@@ -53,7 +53,7 @@ import numpy.random as rd
 N = 1000000
 
 x = rd.uniform(0, 5, N)
-y = x * x
+X = x * x
 
 f, ax = plt.subplots()
 f.suptitle("Distribution statistique")
@@ -61,7 +61,7 @@ f.suptitle("Distribution statistique")
 ax.set_xlabel("Valeurs accessibles")
 ax.set_ylabel("Fréquences")
 
-ax.hist(y, bins='rice')
+ax.hist(X, bins='rice')
 
 plt.show()
 ```
