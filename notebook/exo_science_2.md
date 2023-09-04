@@ -45,7 +45,7 @@ Vous devez :
 Vous devriez obtenir le graphique suivant (Cliquez sur la croix. Cela peut __un peu__ varier puisqu'on fait des tirages aléatoires) :
 
 ```{code-cell}
-:tags: [hide-input, hide-output]
+:tags: [remove-input, remove-output]
 import matplotlib.pyplot  as plt
 import numpy as np
 import numpy.random as rd
@@ -111,7 +111,7 @@ La valeur annoncée par le constructeur est $C = 0.1 \mu F$ mais en l'absence d'
 ````
 
 ```{code-cell}
-:tags: [hide-input, hide-output]
+:tags: [remove-input, remove-output]
 """Les libraires ont déjà été importées à l'exercice précédent"""
 temps, ucb = np.loadtxt('Sf6/circuit_rc.dat', skiprows=7, delimiter=";", unpack=True)  # Importation des données
 
@@ -174,7 +174,7 @@ Si votre navigateur ouvre le fichier au lieu de le télécharger, faites un clic
 ````
 
 ```{code-cell}
-:tags: [hide-input, hide-output]
+:tags: [remove-input, remove-output]
 taus = np.loadtxt('Sf6/circuit_rc_auto.dat', skiprows=7, delimiter=",")  # Importation des données
 
 
@@ -237,7 +237,7 @@ _Compléments utiles_:
 ````
 
 ```{code-cell}
-:tags: [hide-input, hide-output]
+:tags: [remove-input, remove-output]
 donnees = np.loadtxt('Sf6/vitesse_son_2.dat', skiprows=10, delimiter=",")
 distances = donnees[:, 0]  # Récupération des distances.
 
@@ -257,7 +257,7 @@ plt.show()
 ```
 
 ```{code-cell}
-:tags: [hide-input, hide-output]
+:tags: [remove-input, remove-output]
 
 def selection(u):
     """Fonction qui sélectionne les valeurs acceptables du vecteur u"""
@@ -298,7 +298,7 @@ plt.show()  # Pensez à commenter le précédent plt.show()
 ```
 
 ```{code-cell}
-:tags: [hide-input, hide-output]
+:tags: [remove-input, remove-output]
 celerite = np.mean(cs)
 
 print("---------")
