@@ -95,7 +95,7 @@ Tester ensuite votre fonction en affichant son retour pour $n = 0, 1, 2, 5$ et $
 ````
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, hide-output]
 def somme_entier(n):
   s = 0
   for i in range(1, n+1):
@@ -124,7 +124,7 @@ Tester ensuite votre fonction en affichant son retour pour $n = 0, 2, 5, 100$ et
 ````
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, hide-output]
 def somme_ks(n):
   s = 0
   i = 0
@@ -150,7 +150,7 @@ Tester ensuite votre fonction en affichant son retour pour $n = 1, 4, 24, 47$ et
 ````
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, hide-output]
 def getDiv(n):
     # Fonction qui renvoir tout les diviseurs d'un nombre n.
     L = []

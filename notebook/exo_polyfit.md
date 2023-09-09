@@ -60,7 +60,7 @@ On rappelle la fonction pour tracer des points de mesures avec des barres d'erre
 ````
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, remove-output]
 """Importation des bibliothèques"""
 import numpy as np
 import matplotlib.pyplot as plt
@@ -88,7 +88,7 @@ print("Les points sont plutôt alignés. C'est encourageant pour l'utilisation d
 ```
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, remove-output]
 """Ajustement linéaire"""
 p = np.polyfit(R, tau, 1)
 
@@ -118,7 +118,7 @@ print("La droite passe globalement par les croix d'incertitude à part les point
 ```
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, remove-output]
 """Détermination de C par régression linéaire"""
 C = p[0] * 1e-6  # Passage en secondes pour tau.
 print("----------------")
@@ -129,7 +129,7 @@ print("----------------")
 ```
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, remove-output]
 """Détermination de C par moyenne des rapports"""
 C_s = tau / R * 1e-6  # Calcul des C pour chaque valeur de R
 C2 = np.mean(C_s)  # Calcul de la moyenne
@@ -205,7 +205,7 @@ Le nombre de bonbon trouvé ne tient pas compte de la quantité de sucre ingurgi
 ````
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, remove-output]
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -236,7 +236,7 @@ plt.show()  # A commenter si on veut afficher le graphique suivant.
 ```
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, remove-output]
 print("Le tracé précédent rend l'hypothèse linéaire possible.")
 print("On réalise donc l'ajustement.")
 
@@ -261,7 +261,7 @@ f  # Inutile sauf avec un notebook Jupyter
 ```
 
 ```{code-cell}
-:tags: [remove-input, remove-output]
+:tags: [hide-input, hide-output]
 """Le modèle étant plutôt cohérent avec les points de mesures, on va l'utiliser pour évaluer Cf"""
 Af = 0.665
 Cf = p[0] * Af + p[1]  # Concentration en bleu patenté dans la solution diluée
